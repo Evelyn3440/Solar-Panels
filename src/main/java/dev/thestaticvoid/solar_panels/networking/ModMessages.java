@@ -8,9 +8,11 @@ public class ModMessages {
     public static final ResourceIdentifier ENERGY_AMOUNT_SYNC = new ResourceIdentifier("energy_amount_sync");
     public static void initialize() {
         SolarPanels.LOGGER.debug("Initializing packets for " + SolarPanels.MOD_ID);
-
-        registerC2SPackets();
-        registerS2CPackets();
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
+            registerC2SPackets();
+        }else {
+            registerS2CPackets();
+        }
     }
 
     private static void registerC2SPackets() {
